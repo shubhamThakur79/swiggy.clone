@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.activeBtn {
+    background-color: rgb(216, 216, 216);
+    border: 1px solid ;
+
+
+}
+
+.activeBtn span {
+    display: block;
+    color: red;
+
+
+}
