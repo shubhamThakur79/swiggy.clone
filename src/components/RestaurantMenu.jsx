@@ -15,6 +15,7 @@ import { BsCartCheckFill } from "react-icons/bs";
 
 import Cart from './Cart';
 import { toast } from 'react-toastify';
+import { MenuShimmer } from './Shimmer';
 // import SignIn from './SignIn';
 
 
@@ -39,11 +40,14 @@ const RestaurantMenu = () => {
         value >= 0 ? "" : setValue(prev => prev + 40);
     }
     async function fetchMenu() {
-        let res = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=${mainId}&catalog_qa=undefined&submitAction=ENTER`)
-        let data = await res.json()
-        setResInfo(data?.data?.cards[2]?.card?.card?.info || {})
-        setDiscountData(data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers || [])
-        let actualMenuData = data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((data) => {
+        let res = await fetch(`https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=${mainId}&catalog_qa=undefined&submitAction=ENTER`)
+        let data = await res?.json()
+        const resInfo = data?.data?.cards?.find((data)=>data?.card?.card?.["@type"].includes(("food.v2.Restaurant")))?.card?.card?.info;
+        const discountInfo = data?.data?.cards?.find((data)=>data?.card?.card?.["@type"].includes(("v2.GridWidget")))?.card?.card?.gridElements?.infoWithStyle?.offers || []
+        setResInfo(resInfo)
+        setDiscountData(discountData)
+        
+        let actualMenuData = data?.data?.cards?.find((data)=>data?.groupedCard)?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((data) => {
             return data?.card?.card?.itemCards || data?.card.card?.categories
         })
         setMenuData(actualMenuData || [])
@@ -54,7 +58,7 @@ const RestaurantMenu = () => {
             return data?.card?.card?.title === "Top Picks"
         })
         setTopPicks(topItems[0]?.card?.card?.carousel)
-        console.log(topPicks)
+        // console.log(topPicks)
     }
 
 
@@ -67,8 +71,9 @@ const RestaurantMenu = () => {
 
     return (
         <div className='w-full  h-full '>
-            <div className='md:w-[800px] w-[95%] overflow-hidden mx-auto min-h-screen'>
-                <span className='text-[12px]   text-gray-600/60 font-semibold mt-7 mb-9   inline-block'><Link className='hover:text-gray-800/80 cursor-pointer' to="/">Home </Link><span> / </span><Link to={"/"} className='hover:text-gray-800/80 cursor-pointer'>{resInfo.city} <span> / </span>  </Link><span className='text-gray-800/80'>{resInfo.name}</span></span>
+            {
+                menuData.length ? <div className='md:w-[800px] w-[95%] overflow-hidden mx-auto min-h-screen'>
+                <span className='text-[12px]   text-gray-600/60 font-semibold mt-7 mb-9   inline-block'><Link className='hover:text-gray-800/80 cursor-pointer' to="/">Home </Link><span> / </span><Link to={"/"} className='hover:text-gray-800/80 cursor-pointer'>{resInfo?.city} <span> / </span>  </Link><span className='text-gray-800/80'>{resInfo.name}</span></span>
                 <h1 className='text-[27px] font-[700]'>{resInfo?.name}</h1>
                 <div className='w-full h-[210px]  rounded-3xl mt-3  bg-gradient-to-t from-slate-300/70 px-4 pb-4  '>
                     <div className='w-full  h-full p-4 border border-slate-300/50 bg-white rounded-3xl'>
@@ -219,7 +224,10 @@ const RestaurantMenu = () => {
                         </div>
                     })}
                 </div>
-            </div>
+            </div>  
+             :   <MenuShimmer/>
+            }
+           
         </div>
     )
 

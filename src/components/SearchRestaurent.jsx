@@ -11,7 +11,7 @@ const SearchRestaurent = ({ data: {
         <div className='bg-[#FFFFFF] w-[95%] mt-0 md:mt-4 max-h-[20px] min-h-[200px] m-auto  flex md:p-4 justify-between'>
 
             <div className='md:w-[25%] w-[27%] h-[135px] relative mt-[10px] mb-[20px]'>
-                <img className='w-full min-h-[90%] object-cover rounded-2xl' src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/" + cloudinaryImageId} alt={dishName} />
+                <img className='w-full min-h-[90%] max-h-[90%] object-cover rounded-2xl' src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,c_fit/" + cloudinaryImageId} alt={dishName} />
                 <button className='bg-white text-center text-[#FF6913] font-bold  rounded-lg drop-shadow px-6  md:px-4 py-[2px] absolute bottom-[4px] left-1/2 -translate-x-1/2 '>
                 <p className='text-[14px line-clamp-1'>{aggregatedDiscountInfoV3?.header}</p>
                 <p className='text-[8px] text-center w-max'>{aggregatedDiscountInfoV3?.subHeader}</p>

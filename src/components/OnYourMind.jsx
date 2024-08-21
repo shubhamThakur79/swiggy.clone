@@ -17,7 +17,9 @@ const OnYourMind = ({heroDishes}) => {
     }
     // console.log(value)
     return (
-        <div className=''>
+        <>
+        <h1 className='md:hidden text-[27px] font-bold font-sans text-[#FF5D0D] mb-[-35px] mt-2'>What's on your mind?</h1>
+        <div className='hidden md:block'>
             <div className='flex justify-between pt-1'>
                 <div>
                     <h1 className='text-[27px] font-bold font-sans'>What's on your mind?</h1>
@@ -48,7 +50,7 @@ const OnYourMind = ({heroDishes}) => {
                         >
                             <img
                                 className="w-[170px] object-cover"
-                                src={`https://media-assets.swiggy.com/swiggy/image/upload/${item.imageId}`}
+                                src={`https://media-assets.swiggy.com/swiggy/image/upload/${item?.imageId}`}
                                 alt=""
                             />
 
@@ -60,6 +62,7 @@ const OnYourMind = ({heroDishes}) => {
                 )}
             </div>
         </div>
+        </>
     );
 };
 

@@ -66,7 +66,7 @@ function Home() {
 
     async function searchResultFun(val) {
 
-        let response = await fetch("https://www.swiggy.com/dapi/misc/place-autocomplete?input=" + val)
+        let response = await fetch("https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/misc/place-autocomplete?input=" + val)
         let data = await response.json();
 
         console.log(data)
@@ -76,7 +76,7 @@ function Home() {
 
     async function fetchLatLong(id) {
 
-        let response = await fetch("https://www.swiggy.com/dapi/misc/address-recommend?place_id=" + id)
+        let response = await fetch("https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/misc/address-recommend?place_id=" + id)
         let data = await response.json();
         setCoord({
             lat: data?.data[0]?.geometry?.location?.lat,
@@ -133,7 +133,6 @@ function Home() {
                                                     </div>
                                                     <p className='opacity-30'>------------------------------------------------</p>
                                                 </div>
-
                                             })
 
                                     }

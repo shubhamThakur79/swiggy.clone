@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import SearchDishes from './SearchDishes'
 import SearchRestaurent from './SearchRestaurent'
+import { MenuShimmer } from './Shimmer'
 
 const Search = () => {
 
@@ -18,7 +19,7 @@ const Search = () => {
     }
 
     async function fetchDishes() {
-        let response = await fetch(`https://www.swiggy.com/dapi/restaurants/search/v3?lat=28.7040592&lng=77.10249019999999&str={${searchQuery}trackingId=undefined&submitAction=ENTER&queryUniqueId=fd2adaa9-4c57-c5d7-113a-ac5b1196a841`)
+        let response = await fetch(`https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/restaurants/search/v3?lat=28.7040592&lng=77.10249019999999&str={${searchQuery}trackingId=undefined&submitAction=ENTER&queryUniqueId=fd2adaa9-4c57-c5d7-113a-ac5b1196a841`)
         let data = await response.json();
 
         setDishes((data?.data?.cards[1]?.groupedCard?.cardGroupMap?.DISH?.cards)?.filter((data) => {
@@ -32,7 +33,7 @@ const Search = () => {
     }
 
     async function fetchRestaurentData() {
-        let response = await fetch(`https://www.swiggy.com/dapi/restaurants/search/v3?lat=28.7040592&lng=77.10249019999999&str=roll&trackingId=undefined&submitAction=ENTER&queryUniqueId=fd2adaa9-4c57-c5d7-113a-ac5b1196a841&selectedPLTab=RESTAURANT`)
+        let response = await fetch(`https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/restaurants/search/v3?lat=28.7040592&lng=77.10249019999999&str=${searchQuery}&trackingId=undefined&submitAction=ENTER&queryUniqueId=fd2adaa9-4c57-c5d7-113a-ac5b1196a841&selectedPLTab=RESTAURANT`)
         let data = await response.json();
         // if (searchQuery === "") {
         //     return alert("adds")
@@ -63,7 +64,7 @@ const Search = () => {
                 <input
                     onChange={(e) => setSearchQuery(e.target.value)}
                     onKeyDown={(e) => {
-                        setkey(e)
+                        // setkey(e)
                     }}
                     className='px-5 w-full md:w-[980px] outline-none  py-3 border-2 border-black/30 rounded' type="text" placeholder='Search for restaurants and food' />
                 <br />
@@ -89,11 +90,18 @@ const Search = () => {
             {/* <h1>{searchQuery}</h1> */}
 
             <div className='w-full md:w-[980px] bg-[#EFF0F1] mt-[180px]  grid grid-cols-1 md:grid-cols-2 gap-y-[6px] md:gap-3 md:p-3'>
-                {
-                    activeBtn === "Dishes" ?
+
+                {dishes?.length || restaurent?.length ?
+                  ( activeBtn === "Dishes" ?
                         (dishes?.map((data) => <SearchDishes data={data} />))
                         :
-                        (restaurent.map((data) => <SearchRestaurent data={data} />))
+                        (restaurent?.map((data) => <SearchRestaurent data={data} />)
+                    )) 
+                    : 
+                    <div className='flex flex-wrap  bg-white mt-[-12px] ml-[-12px] md:w-[70vw]'>
+                        <MenuShimmer />
+
+                    </div>
                 }
             </div>
 
