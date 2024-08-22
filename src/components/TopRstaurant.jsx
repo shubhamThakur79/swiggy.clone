@@ -22,27 +22,27 @@ const TopRstaurant = ({ data, title }) => {
     // console.log(value)
     return (
         <div className=''>
-            <div className='flex justify-between pt-1'>
-                <div className='mt-10 mb-4'>
-                    <h1 className='text-[27px] font-bold font-sans'>{title?.length > 3 ? title : ""}</h1>
+            <div className='flex justify-between relative md:ml-0  md:mx-0 mx-[-20px] md:mr-0 ml-[-1px]'>
+                <div className='mt-10 md:mb-4'>
+                    <h1 className='text-[27px] font-bold font-sans w-max'>{title?.length > 3 ? title : ""}</h1>
                 </div>
-                <div className='flex gap-5 items-center pr-5 flex-row'>
+                <div className='flex gap-8 items-center  flex-row justify-between md:justify-end w-[95%] absolute md:static top-[115px] z-30'>
                     <div
                         onClick={handleLeft}
-                        className={`p-3 cursor-pointer rounded-[50%] flex items-center justify-center ${value >= 0 ? "bg-gray-200/80" : "bg-gray-400/30"}`}
+                        className={`md:p-3 p-2 cursor-pointer rounded-[50%] flex items-center justify-center ${value >= 0 ? "md:bg-gray-200/80 bg-green-500/50" : "md:bg-gray-400/30 bg-green-500 "}` }
                     >
-                        <GoArrowLeft className={`${value >= 0 ? "text-gray-400/70" : "text-black"}`} />
+                        <GoArrowLeft className={`${value >= 0 ? "md:text-gray-400/70 " : "text-black"}`} />
                     </div>
                     <div
                         onClick={handleRight}
-                        className={`p-3 cursor-pointer bg-gray-200 rounded-[50%] flex items-center justify-center ${value <= -1400 ? "bg-gray-200/80" : "bg-gray-400/30"}`}
+                        className={`md:p-3 p-2 cursor-pointer bg-gray-200 rounded-[50%] flex items-center justify-center ${value <= -1400 ? "md:bg-gray-200/80 " : "md:bg-gray-400/30 bg-green-500 "}`}
                     >
                         <GoArrowRight className={`${value <= -1400 ? "text-gray-400/70" : "text-black"}`} />
                     </div>
                 </div>
             </div>
 
-            <div className='flex w-full gap-8 ' >
+            <div className='flex w-full md:gap-7 gap-10 md:ml-0 ml-9 md:mt-0 mt-[-18px]' >
                 {data && data.length > 0 ? (
                     data.map((restaurent, i) => (
                         <div

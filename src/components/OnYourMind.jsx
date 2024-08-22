@@ -28,13 +28,13 @@ const OnYourMind = ({heroDishes}) => {
                 <div className='flex gap-5 items-center pr-5 flex-row'>
                     <div
                         onClick={handleLeft}
-                        className={`p-3 cursor-pointer rounded-[50%] flex items-center justify-center ${value >= 0 ? "bg-gray-200/80" : "bg-gray-400/30"}`}
+                        className={`md:p-3 p-2 cursor-pointer rounded-[50%] flex items-center justify-center ${value >= 0 ? "bg-gray-200/80" : "bg-gray-400/30"}`}
                     >
                         <GoArrowLeft className={`${value >= 0 ? "text-gray-400/70" : "text-black"}`} />
                     </div>
                     <div
                         onClick={handleRight}
-                        className={`p-3 cursor-pointer bg-gray-200 rounded-[50%] flex items-center justify-center ${value <= -1320 ? "bg-gray-200/80" : "bg-gray-400/30"}`}
+                        className={`md:p-3 p-2 cursor-pointer bg-gray-200 rounded-[50%] flex items-center justify-center ${value <= -1320 ? "bg-gray-200/80" : "bg-gray-400/30"}`}
                     >
                         <GoArrowRight className={`${value <= -1320 ? "text-gray-400/70" : "text-black"}`} />
                     </div>

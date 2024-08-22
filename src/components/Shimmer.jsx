@@ -3,7 +3,7 @@ import React from 'react'
 const Shimmer = () => {
     return (
         <div className='w-full'>
-            <div className='w-full flex flex-col gap-7 items-center justify-center bg-slate-900 h-[350px]'>
+            <div className='w-full flex flex-col gap-7 items-center justify-center bg-slate-900 h-[280px] md:h-[350px]'>
                 <div className='relative flex items-start'>
 
                     <img className='w-12 mt-[14px] absolute left-1/2 -translate-x-1/2' src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/icecream_wwomsa" alt="loding..." />
