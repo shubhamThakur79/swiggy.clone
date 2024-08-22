@@ -8,10 +8,10 @@ const RestaurantCard = ({ restaurent, link }) => {
     return (
         <Link className='flex items-center justify-center sm:justify-start ' to={`/restaurantMenu/${link != undefined ? link?.link?.split("/")[4] : restaurent?.info?.id}`}>
             <div>
-                <div className='restaurant-card mx-auto w-[300px] h-[185px] sm:w-[260px] sm:h-[170px] relative rounded-xl overflow-hidden '>
+                <div className='restaurant-card mx-auto w-[330px] h-[185px] sm:w-[260px] sm:h-[170px] relative rounded-xl overflow-hidden '>
                     <img className='h-full w-full object-cover ' src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/` + restaurent?.info?.cloudinaryImageId} alt="" />
                     <div className='absolute bottom-0  bg-gradient-to-t from-black/90 from-1% w-full h-full to-black/10 to-70%'></div>
-                    <p className='absolute bottom-0 text-white text-2xl font-bold  mx-2 mb-[5px]'>{restaurent?.info.aggregatedDiscountInfoV3?.header} {" "} {restaurent?.info.aggregatedDiscountInfoV3?.subHeader}</p>
+                    <p className='absolute bottom-0 text-white text-2xl font-bold  mx-2 mb-[5px]'>{restaurent?.info?.aggregatedDiscountInfoV3?.header} {" "} {restaurent?.info.aggregatedDiscountInfoV3?.subHeader}</p>
                 </div>
 
                 <div className='mt-2 ml-2 '>

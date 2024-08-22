@@ -42,7 +42,7 @@ const TopRstaurant = ({ data, title }) => {
                 </div>
             </div>
 
-            <div className='flex w-full md:gap-7 gap-10 md:ml-0 ml-9 md:mt-0 mt-[-18px]' >
+            <div className='flex w-full md:gap-7 gap-10 md:ml-0 ml-[19px] md:mt-0 mt-[-18px]' >
                 {data && data.length > 0 ? (
                     data.map((restaurent, i) => (
                         <div
