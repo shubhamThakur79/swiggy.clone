@@ -6,9 +6,9 @@ const RestaurantCard = ({ restaurent, link }) => {
     // console.log(link?.link?.split("/")[4])
     
     return (
-        <Link to={`/restaurantMenu/${link != undefined ? link?.link?.split("/")[4] : restaurent?.info?.id}`}>
+        <Link className='flex items-center justify-center sm:justify-start' to={`/restaurantMenu/${link != undefined ? link?.link?.split("/")[4] : restaurent?.info?.id}`}>
             <div>
-                <div className='restaurant-card  w-[400px] h-[230px] sm:w-[290px] sm:h-[190px] relative rounded-xl overflow-hidden '>
+                <div className='restaurant-card mx-auto w-[310px] h-[190px] sm:w-[270px] sm:h-[180px] relative rounded-xl overflow-hidden '>
                     <img className='h-full w-full object-cover ' src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/` + restaurent?.info?.cloudinaryImageId} alt="" />
                     <div className='absolute bottom-0  bg-gradient-to-t from-black/90 from-1% w-full h-full to-black/10 to-70%'></div>
                     <p className='absolute bottom-0 text-white text-2xl font-bold  mx-2 mb-[5px]'>{restaurent?.info.aggregatedDiscountInfoV3?.header} {" "} {restaurent?.info.aggregatedDiscountInfoV3?.subHeader}</p>
@@ -21,7 +21,7 @@ const RestaurantCard = ({ restaurent, link }) => {
                         {restaurent?.info?.avgRatingString}
                         <span>{restaurent?.info?.sla?.slaString}</span>
                     </p>
-                    <div className='font-medium text-lg text-gray-500'>
+                    <div className='font-medium text-lg text-gray-500 mx-auto  w-[280px]  sm:w-[270px] '>
                         <span className='line-clamp-1'>
                             {restaurent?.info?.cuisines?.join(", ")}
                         </span>
