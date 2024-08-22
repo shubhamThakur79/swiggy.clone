@@ -56,7 +56,7 @@ const OnlineFoodDelivery = ({ data, title }) => {
 
             </div>
 
-            <div className='gap-5 grid sm:grid-cols-2 grid-cols-1 md:grid-cols-3 lg:grid-cols-4  m-auto w-full'>
+            <div className='gap-0 grid sm:grid-cols-2 grid-cols-1 md:grid-cols-3 lg:grid-cols-4  m-auto w-full'>
                 {data && data.length > 0 ? (
                     data.map((restaurent, i) => (
                         <div key={i} className="hover:scale-95 duration-300 mb-[-20px] ">
@@ -64,7 +64,7 @@ const OnlineFoodDelivery = ({ data, title }) => {
                                 className='hover:scale-95 duration-300  sm:ml-0 md:w-[80%]'
                                 style={{ transform: 'scale(0.9)' }} 
                             >
-                                <RestaurantCard restaurent={restaurent} link={restaurent.cta} />
+                                <RestaurantCard restaurent={restaurent} link={restaurent?.cta} />
                             </div>
                         </div>
                     ))

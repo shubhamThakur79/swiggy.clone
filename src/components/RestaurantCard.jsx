@@ -6,7 +6,7 @@ const RestaurantCard = ({ restaurent, link }) => {
     // console.log(link?.link?.split("/")[4])
     
     return (
-        <Link className='flex items-center justify-center sm:justify-start' to={`/restaurantMenu/${link != undefined ? link?.link?.split("/")[4] : restaurent?.info?.id}`}>
+        <Link className='flex items-center justify-center sm:justify-start ' to={`/restaurantMenu/${link != undefined ? link?.link?.split("/")[4] : restaurent?.info?.id}`}>
             <div>
                 <div className='restaurant-card mx-auto w-[310px] h-[190px] sm:w-[270px] sm:h-[180px] relative rounded-xl overflow-hidden '>
                     <img className='h-full w-full object-cover ' src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/` + restaurent?.info?.cloudinaryImageId} alt="" />
