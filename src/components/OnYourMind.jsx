@@ -1,5 +1,6 @@
 import React, {  useState } from 'react'
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
+import { MenuShimmer } from './Shimmer';
 
 
 const OnYourMind = ({heroDishes}) => {
@@ -18,11 +19,11 @@ const OnYourMind = ({heroDishes}) => {
     // console.log(value)
     return (
         <>
-        <h1 className='md:hidden text-[27px] font-bold font-sans text-[#FF5D0D] mb-[-35px] mt-2'>What's on your mind?</h1>
+        <h1 className='md:hidden text-[23px] font-bold font-sans text-[#FF5D0D] mb-[-50px] mt-1 ml-1'>What's on your mind?</h1>
         <div className='hidden md:block'>
             <div className='flex justify-between pt-1'>
                 <div>
-                    <h1 className='text-[27px] font-bold font-sans'>What's on your mind?</h1>
+                    <h1 className='text-[26px] font-bold font-sans'>What's on your mind?</h1>
                 </div>
                 <div className='flex gap-5 items-center pr-5 flex-row'>
                     <div
@@ -49,7 +50,7 @@ const OnYourMind = ({heroDishes}) => {
                             className="flex-shrink-0 duration-300"
                         >
                             <img
-                                className="w-[170px] object-cover"
+                                className="w-[160px] object-cover"
                                 src={`https://media-assets.swiggy.com/swiggy/image/upload/${item?.imageId}`}
                                 alt=""
                             />
@@ -58,7 +59,7 @@ const OnYourMind = ({heroDishes}) => {
                         </div>
                     ))
                 ) : (
-                    <h1>Loading, please wait...</h1>
+                    <MenuShimmer/>
                 )}
             </div>
         </div>
