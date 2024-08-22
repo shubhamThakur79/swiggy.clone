@@ -202,7 +202,7 @@ function Home() {
                                 return items?.name == "Sign In" ?
                                 <Link to={"/signin"}>
                                 <div onClick={handleSignUp}>
-                                        <div key={i} className='flex w-max hover:text-[#FF5200] items-center justify-between md:gap-2 gap-[2px] cursor-pointer'>
+                                        <div id='#top' key={i} className='flex w-max hover:text-[#FF5200] items-center justify-between md:gap-2 gap-[2px] cursor-pointer'>
                                             {userData ?
                                                 <img
                                                     className="rounded-[50%] md:h-10 md:w-10 h-7 w-7"

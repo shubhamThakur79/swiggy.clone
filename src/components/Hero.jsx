@@ -95,7 +95,7 @@ const Hero = () => {
 
   // Main content
   return (
-    <div className="w-full">
+    <div className="w-full" id="top">
       {
         TopRestaurantData.length ? (
           <div className="md:w-[100%] lg:w-[78%] w-[95%] h-full mx-auto mt-3 overflow-hidden">
