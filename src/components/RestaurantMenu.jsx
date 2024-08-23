@@ -42,12 +42,12 @@ const RestaurantMenu = () => {
     async function fetchMenu() {
         let res = await fetch(`https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.7040592&lng=77.10249019999999&restaurantId=${mainId}&catalog_qa=undefined&submitAction=ENTER`)
         let data = await res?.json()
-        const resInfo = data?.data?.cards?.find((data)=>data?.card?.card?.["@type"].includes(("food.v2.Restaurant")))?.card?.card?.info;
-        const discountInfo = data?.data?.cards?.find((data)=>data?.card?.card?.["@type"].includes(("v2.GridWidget")))?.card?.card?.gridElements?.infoWithStyle?.offers || []
+        const resInfo = data?.data?.cards?.find((data) => data?.card?.card?.["@type"].includes(("food.v2.Restaurant")))?.card?.card?.info;
+        const discountInfo = data?.data?.cards?.find((data) => data?.card?.card?.["@type"].includes(("v2.GridWidget")))?.card?.card?.gridElements?.infoWithStyle?.offers || []
         setResInfo(resInfo)
         setDiscountData(discountData)
-        
-        let actualMenuData = data?.data?.cards?.find((data)=>data?.groupedCard)?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((data) => {
+
+        let actualMenuData = data?.data?.cards?.find((data) => data?.groupedCard)?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((data) => {
             return data?.card?.card?.itemCards || data?.card.card?.categories
         })
         setMenuData(actualMenuData || [])
@@ -72,103 +72,56 @@ const RestaurantMenu = () => {
     return (
         <div className='w-full  h-full '>
             {
-                menuData.length ? <div className='md:w-[800px] w-[95%] overflow-hidden mx-auto min-h-screen'>
-                <span className='text-[12px]   text-gray-600/60 font-semibold mt-7 mb-9   inline-block'><Link className='hover:text-gray-800/80 cursor-pointer' to="/">Home </Link><span> / </span><Link to={"/"} className='hover:text-gray-800/80 cursor-pointer'>{resInfo?.city} <span> / </span>  </Link><span className='text-gray-800/80'>{resInfo.name}</span></span>
-                <h1 className='text-[27px] font-[700]'>{resInfo?.name}</h1>
-                <div className='w-full h-[210px]  rounded-3xl mt-3  bg-gradient-to-t from-slate-300/70 px-4 pb-4  '>
-                    <div className='w-full  h-full p-4 border border-slate-300/50 bg-white rounded-3xl'>
-                        <div className='flex items-center text-[20px] font-semibold gap-1 '>
-                            <MdOutlineStar className='text-white py-[2px] px-[2px] bg-green-700 h-5 w-5 rounded-xl' />
-                            <span>{resInfo?.avgRating} ({resInfo?.totalRatingsString}) {" . "} {resInfo?.costForTwoMessage}</span>
-                        </div>
-                        <h1 className='font-bold text-[#FF5200] underline cursor-pointer'>{
-                            resInfo?.cuisines?.join(", ")
-                        }
-                        </h1>
-
-                        <div className='flex items-center mt-2'>
-                            <div className='flex flex-col w-7 items-center'>
-                                <div className='h-[7px] w-[7px] rounded-full bg-gray-400/70'></div>
-                                <div className='h-7 w-[1px] bg-gray-400/70'></div>
-                                <div className='h-[7px] w-[7px] rounded-full bg-gray-400/70 '></div>
+                menuData?.length ? <div className='md:w-[800px] w-[95%] overflow-hidden mx-auto min-h-screen'>
+                    <span className='text-[12px]   text-gray-600/60 font-semibold mt-7 mb-9   inline-block'><Link className='hover:text-gray-800/80 cursor-pointer' to="/">Home </Link><span> / </span><Link to={"/"} className='hover:text-gray-800/80 cursor-pointer'>{resInfo?.city} <span> / </span>  </Link><span className='text-gray-800/80'>{resInfo.name}</span></span>
+                    <h1 className='text-[27px] font-[700]'>{resInfo?.name}</h1>
+                    <div className='w-full h-[210px]  rounded-3xl mt-3  bg-gradient-to-t from-slate-300/70 px-4 pb-4  '>
+                        <div className='w-full  h-full p-4 border border-slate-300/50 bg-white rounded-3xl'>
+                            <div className='flex items-center text-[20px] font-semibold gap-1 '>
+                                <MdOutlineStar className='text-white py-[2px] px-[2px] bg-green-700 h-5 w-5 rounded-xl' />
+                                <span>{resInfo?.avgRating} ({resInfo?.totalRatingsString}) {" . "} {resInfo?.costForTwoMessage}</span>
                             </div>
-                            <div>
-                                <p className='font-bold text-[17px]'>Outlet <span className='font-medium text-[16px] ml-2 text-gray-800/80'>{resInfo?.locality}</span></p>
-                                <p className='font-bold text-[17px]'>{resInfo?.sla?.slaString}</p>
+                            <h1 className='font-bold text-[#FF5200] underline cursor-pointer'>{
+                                resInfo?.cuisines?.join(", ")
+                            }
+                            </h1>
+
+                            <div className='flex items-center mt-2'>
+                                <div className='flex flex-col w-7 items-center'>
+                                    <div className='h-[7px] w-[7px] rounded-full bg-gray-400/70'></div>
+                                    <div className='h-7 w-[1px] bg-gray-400/70'></div>
+                                    <div className='h-[7px] w-[7px] rounded-full bg-gray-400/70 '></div>
+                                </div>
+                                <div>
+                                    <p className='font-bold text-[17px]'>Outlet <span className='font-medium text-[16px] ml-2 text-gray-800/80'>{resInfo?.locality}</span></p>
+                                    <p className='font-bold text-[17px]'>{resInfo?.sla?.slaString}</p>
+                                </div>
+
                             </div>
+                            <hr className='mt-4 w-full px-[0px]' />
+                            <div className='w-full flex items-center gap-1 mt-2'>
 
-                        </div>
-                        <hr className='mt-4 w-full px-[0px]' />
-                        <div className='w-full flex items-center gap-1 mt-2'>
-
-                            <h1 className='text-[16px] font-medium text-gray-600 flex items-center gap-2'>
-                                {resInfo?.expectationNotifiers?.length > 0 ?
-                                    (<>
+                                <h1 className='text-[16px] font-medium text-gray-600 flex items-center gap-2'>
+                                    {resInfo?.expectationNotifiers?.length > 0 ?
+                                        (<>
 
 
-                                        <div className='h-full'>
-                                            <img className='w-6' src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_40,h_40/${resInfo?.feeDetails?.icon}`} alt="" />
+                                            <div className='h-full'>
+                                                <img className='w-6' src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_40,h_40/${resInfo?.feeDetails?.icon}`} alt="" />
 
-                                        </div>
-                                        <span className='  '>{resInfo.expectationNotifiers[0]?.enrichedText.replace(/<[^>]*>/g, " ")}</span> </>) : (<p className='text-lg text-red-500 font-mono'>Currently not availible</p>)}
+                                            </div>
+                                            <span className='  '>{resInfo.expectationNotifiers[0]?.enrichedText.replace(/<[^>]*>/g, " ")}</span> </>) : (<p className='text-lg text-red-500 font-mono'>Currently not availible</p>)}
 
-                            </h1 >
-                        </div>
-                    </div>
-                </div>
-
-                {/* new from on your Mind component */}
-                <div className='w-full'>
-                    <div className='flex justify-between pt-1  mt-6'>
-                        <div>
-                            <h1 className='text-[23px] font-bold font-sans'>Deals for you</h1>
-                        </div>
-                        <div className='flex gap-5 items-center pr-5 flex-row'>
-                            <div
-                                onClick={handleLeft}
-                                className={`p-3 cursor-pointer rounded-[50%] flex items-center justify-center ${value >= 0 ? "bg-gray-200/80" : "bg-gray-400/30"}`}
-                            >
-                                <GoArrowLeft className={`${value >= 0 ? "text-gray-400/70" : "text-black"}`} />
+                                </h1 >
                             </div>
-                            <div
-                                onClick={handleRight}
-                                className={`p-3 cursor-pointer bg-gray-200 rounded-[50%] flex items-center justify-center ${value <= -1320 ? "bg-gray-200/80" : "bg-gray-400/30"}`}
-                            >
-                                <GoArrowRight className={`${value <= -1320 ? "text-gray-400/70" : "text-black"}`} />
-                            </div>
-
                         </div>
                     </div>
 
-                    {/* Discount Data */}
-
-                    <div style={{ transform: `translateX(${value}%)` }}
-
-                        className='flex gap-6 w-full mt-[10px] cursor-pointer  duration-500'>
-                        {discountData.map((data, i) => {
-
-                            return <div key={i} className=''>
-                                <Discount discountData={data} />
-                            </div>
-                        })}
-                    </div>
-                </div>
-
-                <h1 className='text-center mt-16 font-semibold text-gray-600/90 tracking-widest'>MENU</h1>
-
-                {/* Link for search btn  items Comming Here  */}
-
-                <div className='w-full mt-6 cursor-pointer'>
-                    <div className='w-full relative text-[18px] text-gray-600/90 font-medium  text-center py-[14px] rounded-xl bg-gray-200/90'>Search for dishes <IoIosSearch className='absolute right-3 bottom-4 text-2xl font-semibold' /></div>
-                </div>
-
-                {/* Top Picks Here */}
-                {
-
-                    topPicks && <div className='w-full'>
+                    {/* new from on your Mind component */}
+                    <div className='w-full'>
                         <div className='flex justify-between pt-1  mt-6'>
                             <div>
-                                <h1 className='text-[23px] font-bold font-sans'>{topPicks.length >= 0 && topPicks?.card?.card?.title || "Top Picks"}</h1>
+                                <h1 className='text-[23px] font-bold font-sans'>Deals for you</h1>
                             </div>
                             <div className='flex gap-5 items-center pr-5 flex-row'>
                                 <div
@@ -187,47 +140,96 @@ const RestaurantMenu = () => {
                             </div>
                         </div>
 
+                        {/* Discount Data */}
 
                         <div style={{ transform: `translateX(${value}%)` }}
 
-                            className='flex gap-4 w-full mt-[10px] cursor-pointer duration-500'>
-                            {topPicks.map(({ creativeId, title, dish: { info: { category, defaultPrice, name, description, price } } }, i) => {
-                                // console.log(topPicks)
-                                return <div key={i} className='relative '>
-                                    <div className='w-[300px] relative rounded-2xl h-[300px] overflow-hidden'>
+                            className='flex gap-6 w-full mt-[10px] cursor-pointer  duration-500'>
+                            {discountData.map((data, i) => {
 
-                                        <img className='w-full h-full bg-center object-cover' src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_292,h_300/" + (creativeId)} alt="" />
-                                        <div className='absolute bottom-7 flex justify-between items-center px-5 w-full'>
-                                            <p className='text-white font-bold text-xl'>₹{price / 100 || defaultPrice / 100}</p>
-                                            <button onClick={() => {
-
-                                            }} className='bg-white text-green-600 font-bold text-[20px] rounded-lg drop-shadow px-10 py-[6px] '>ADD</button>
-
-                                        </div>
-
-                                    </div>
-
+                                return <div key={i} className=''>
+                                    <Discount discountData={data} />
                                 </div>
                             })}
                         </div>
                     </div>
-                }
 
-                {/* Menu Cards from here */}
+                    <h1 className='text-center mt-16 font-semibold text-gray-600/90 tracking-widest'>MENU</h1>
 
-                <div>
-                    {menuData.map(({ card: { card } }, i) => {
-                        return <div key={i}>
-                            <MenuData card={card} />
+                    {/* Link for search btn  items Comming Here  */}
+                    <Link to="/search">
 
-
+                        <div className='w-full mt-6 cursor-pointer'>
+                            <div className='w-full relative text-[18px] text-gray-600/90 font-medium  text-center py-[14px] rounded-xl bg-gray-200/90'>Search for dishes <IoIosSearch className='absolute right-3 bottom-4 text-2xl font-semibold' /></div>
                         </div>
-                    })}
+                    </Link>
+
+                    {/* Top Picks Here */}
+                    {
+
+                        topPicks && <div className='w-full'>
+                            <div className='flex justify-between pt-1  mt-6'>
+                                <div>
+                                    <h1 className='text-[23px] font-bold font-sans'>{topPicks.length >= 0 && topPicks?.card?.card?.title || "Top Picks"}</h1>
+                                </div>
+                                <div className='flex gap-5 items-center pr-5 flex-row'>
+                                    <div
+                                        onClick={handleLeft}
+                                        className={`p-3 cursor-pointer rounded-[50%] flex items-center justify-center ${value >= 0 ? "bg-gray-200/80" : "bg-gray-400/30"}`}
+                                    >
+                                        <GoArrowLeft className={`${value >= 0 ? "text-gray-400/70" : "text-black"}`} />
+                                    </div>
+                                    <div
+                                        onClick={handleRight}
+                                        className={`p-3 cursor-pointer bg-gray-200 rounded-[50%] flex items-center justify-center ${value <= -1320 ? "bg-gray-200/80" : "bg-gray-400/30"}`}
+                                    >
+                                        <GoArrowRight className={`${value <= -1320 ? "text-gray-400/70" : "text-black"}`} />
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div style={{ transform: `translateX(${value}%)` }}
+
+                                className='flex gap-4 w-full mt-[10px] cursor-pointer duration-500'>
+                                {topPicks.map(({ creativeId, title, dish: { info: { category, defaultPrice, name, description, price } } }, i) => {
+                                    // console.log(topPicks)
+                                    return <div key={i} className='relative '>
+                                        <div className='w-[300px] relative rounded-2xl h-[300px] overflow-hidden'>
+
+                                            <img className='w-full h-full bg-center object-cover' src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_292,h_300/" + (creativeId)} alt="" />
+                                            <div className='absolute bottom-7 flex justify-between items-center px-5 w-full'>
+                                                <p className='text-white font-bold text-xl'>₹{price / 100 || defaultPrice / 100}</p>
+                                                <button onClick={() => {
+
+                                                }} className='bg-white text-green-600 font-bold text-[20px] rounded-lg drop-shadow px-10 py-[6px] '>ADD</button>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                })}
+                            </div>
+                        </div>
+                    }
+
+                    {/* Menu Cards from here */}
+
+                    <div>
+                        {menuData.map(({ card: { card } }, i) => {
+                            return <div key={i}>
+                                <MenuData card={card} />
+
+
+                            </div>
+                        })}
+                    </div>
                 </div>
-            </div>  
-             :   <MenuShimmer/>
+                    : <MenuShimmer />
             }
-           
+
         </div>
     )
 
