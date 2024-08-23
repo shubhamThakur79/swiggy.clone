@@ -94,7 +94,7 @@ function Home() {
             <div className={'w-full '}>
                 {
 
-                    visible && <div className={`flex   flex-col bg-card shadow-lg p-6 bg-black/50 bottom-0 z-20 absolute top-0  w-full `}>
+                    visible && <div className={`flex   flex-col bg-card shadow-lg p-6 bg-black/50 bottom-0  absolute top-0  w-full  z-50`}>
                         <div className='md:w-[35%] w-full flex justify-end   h-screen bg-white absolute left-0 z-30 top-0 bottom-0'>
                             <div className='flex w-[70%] flex-col gap-5 mt-8 mr-12 '>
 
